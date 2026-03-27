@@ -1,0 +1,580 @@
+/* ============================================
+   PAIRFECT — Shared Stylesheet
+   Spring Boot / Thymeleaf
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;600;700&display=swap');
+
+/* ---------- CSS Variables ---------- */
+:root {
+    --navy:        #0D2B6E;
+    --navy-deep:   #091E50;
+    --navy-mid:    #143580;
+    --navy-light:  #1A4299;
+    --white:       #FFFFFF;
+    --off-white:   #EEF1F8;
+    --text-muted:  rgba(255,255,255,0.65);
+    --border:      rgba(255,255,255,0.25);
+    --border-btn:  rgba(255,255,255,0.5);
+    --radius-pill: 50px;
+    --radius-card: 18px;
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body:    'Raleway', sans-serif;
+    --transition:   0.25s ease;
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+    font-family: var(--font-body);
+    background: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+img { display: block; max-width: 100%; }
+
+/* ---------- Shared Nav ---------- */
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 48px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--navy);
+}
+
+.nav-logo {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: -0.02em;
+    color: var(--white);
+}
+
+.nav-logo span {
+    font-style: normal;
+    font-weight: 600;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    list-style: none;
+}
+
+.nav-links a {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--white);
+    letter-spacing: 0.04em;
+    transition: opacity var(--transition);
+}
+
+.nav-links a:hover { opacity: 0.7; }
+
+.nav-links a.active {
+    border: 1.5px solid var(--white);
+    padding: 6px 22px;
+    border-radius: var(--radius-pill);
+    font-style: italic;
+}
+
+/* ---------- Pill Button (nav Upload) ---------- */
+.btn-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    border: 1.5px solid var(--white);
+    border-radius: var(--radius-pill);
+    padding: 8px 28px;
+    background: transparent;
+    cursor: pointer;
+    transition: background var(--transition), color var(--transition);
+}
+
+.btn-pill:hover {
+    background: var(--white);
+    color: var(--navy);
+}
+
+/* ---------- Avatar Icon ---------- */
+.avatar-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: 1.5px solid var(--border-btn);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background var(--transition);
+}
+.avatar-icon:hover { background: rgba(255,255,255,0.25); }
+.avatar-icon svg { width: 22px; height: 22px; fill: var(--white); }
+
+/* ---------- Category Pills ---------- */
+.category-bar {
+    display: flex;
+    gap: 12px;
+    padding: 0 48px 24px;
+    flex-wrap: wrap;
+}
+
+.cat-pill {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    border-radius: var(--radius-pill);
+    border: 1.5px solid var(--border-btn);
+    background: transparent;
+    color: var(--white);
+    cursor: pointer;
+    transition: background var(--transition), color var(--transition);
+}
+
+.cat-pill:hover,
+.cat-pill.active {
+    background: var(--white);
+    color: var(--navy);
+    border-color: var(--white);
+}
+
+/* ---------- Search Bar ---------- */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    padding: 10px 20px;
+    gap: 10px;
+    flex: 1;
+    max-width: 520px;
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    width: 100%;
+}
+
+.search-bar input::placeholder { color: var(--text-muted); }
+
+.search-bar svg { width: 18px; height: 18px; fill: var(--text-muted); flex-shrink: 0; }
+
+/* ---------- Photo Grid ---------- */
+.photo-grid {
+    columns: 7 140px;
+    column-gap: 12px;
+    padding: 0 48px 48px;
+}
+
+.photo-grid-item {
+    break-inside: avoid;
+    margin-bottom: 12px;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+.photo-grid-item img {
+    width: 100%;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.photo-grid-item:hover img { transform: scale(1.04); }
+
+/* ---------- Section Heading ---------- */
+.section-heading {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 300;
+    text-align: center;
+    padding: 24px 0 20px;
+    letter-spacing: -0.01em;
+}
+
+.section-heading em {
+    font-style: italic;
+    font-weight: 400;
+}
+
+/* ============================================
+   LOGIN PAGE
+   ============================================ */
+
+.login-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+}
+
+.login-hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.login-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+.login-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(9,30,80,0.15), rgba(9,30,80,0.55));
+}
+
+/* Vertical PAIRFECT lettering */
+.login-brand-vertical {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 12px;
+    pointer-events: none;
+}
+
+.login-brand-vertical span {
+    font-family: var(--font-body);
+    font-size: clamp(2.8rem, 5vw, 5.5rem);
+    font-weight: 700;
+    line-height: 0.85;
+    color: var(--white);
+    -webkit-text-stroke: 2px var(--white);
+    letter-spacing: -0.03em;
+}
+
+.login-brand-vertical span.outline {
+    color: transparent;
+    -webkit-text-stroke: 2px var(--white);
+}
+
+/* Right panel */
+.login-panel {
+    background: var(--navy-deep);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 64px;
+    gap: 0;
+}
+
+.login-tagline {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-style: italic;
+    font-weight: 300;
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 48px;
+    color: var(--white);
+}
+
+.login-form {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.login-input {
+    width: 100%;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    padding: 14px 22px;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color var(--transition), background var(--transition);
+}
+
+.login-input::placeholder { color: var(--text-muted); }
+
+.login-input:focus {
+    border-color: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.18);
+}
+
+.btn-login {
+    width: 100%;
+    padding: 14px;
+    border-radius: var(--radius-pill);
+    border: 1.5px solid var(--white);
+    background: transparent;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background var(--transition), color var(--transition);
+    margin-top: 4px;
+}
+
+.btn-login:hover {
+    background: var(--white);
+    color: var(--navy);
+}
+
+.login-forgot {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color var(--transition);
+}
+.login-forgot:hover { color: var(--white); }
+
+.login-divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 10px 0;
+}
+.login-divider hr {
+    flex: 1;
+    border: none;
+    border-top: 1px solid var(--border);
+}
+.login-divider span {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.btn-email-login {
+    width: 100%;
+    padding: 13px;
+    border-radius: var(--radius-pill);
+    border: 1.5px solid var(--border-btn);
+    background: transparent;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background var(--transition), color var(--transition);
+}
+
+.btn-email-login:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.btn-email-login svg { width: 18px; height: 18px; fill: var(--white); }
+
+.btn-create {
+    width: 100%;
+    padding: 13px;
+    border-radius: var(--radius-pill);
+    border: 1.5px solid var(--border-btn);
+    background: transparent;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: background var(--transition), color var(--transition);
+}
+
+.btn-create:hover { background: rgba(255,255,255,0.1); }
+
+/* ============================================
+   HOME / SEARCH PAGE
+   ============================================ */
+
+.home-nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 22px 48px;
+}
+
+/* ============================================
+   UPLOAD / WARDROBE PAGE (Image 3)
+   ============================================ */
+
+.upload-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 32px 48px;
+    max-width: 620px;
+}
+
+.upload-cell {
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    background: rgba(255,255,255,0.08);
+    cursor: pointer;
+    position: relative;
+    transition: transform var(--transition);
+}
+
+.upload-cell:hover { transform: scale(1.02); }
+
+.upload-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.upload-cell-add {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border: 2px dashed var(--border);
+}
+
+.upload-cell-add svg { width: 36px; height: 36px; stroke: var(--text-muted); fill: none; }
+
+/* ============================================
+   CONTACT PAGE
+   ============================================ */
+
+.contact-page {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 80px);
+}
+
+.contact-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 60px 120px 40px 48px;
+}
+
+.contact-address {
+    text-align: left;
+}
+
+.contact-address h2 {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 300;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+}
+
+.contact-address p {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.contact-socials {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    padding: 48px 48px 60px;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
+    background: rgba(0,0,0,0.15);
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    transition: transform var(--transition);
+}
+
+.contact-item:hover { transform: translateY(-4px); }
+
+.contact-icon-wrap {
+    width: 88px;
+    height: 88px;
+    border-radius: 22px;
+    background: var(--navy-mid);
+    border: 2px solid rgba(255,255,255,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-icon-wrap svg {
+    width: 42px;
+    height: 42px;
+    fill: var(--white);
+}
+
+.contact-label {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media (max-width: 900px) {
+    .login-page { grid-template-columns: 1fr; }
+    .login-hero { display: none; }
+    .login-panel { padding: 48px 32px; }
+
+    .nav, .home-nav { padding: 16px 24px; }
+    .category-bar { padding: 0 24px 16px; }
+    .photo-grid { columns: 3 120px; padding: 0 24px 24px; }
+
+    .contact-body { padding: 40px 32px; align-items: flex-start; }
+    .contact-socials { gap: 24px; padding: 32px 24px 40px; flex-wrap: wrap; }
+}

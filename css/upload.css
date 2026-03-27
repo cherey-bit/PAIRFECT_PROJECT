@@ -1,0 +1,248 @@
+
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --navy:       #0D2B6E;
+    --navy-deep:  #091E50;
+    --navy-mid:   #143580;
+    --navy-light: #1A4299;
+    --white:      #FFFFFF;
+    --text-muted: rgba(255,255,255,0.60);
+    --border:     rgba(255,255,255,0.22);
+    --border-btn: rgba(255,255,255,0.45);
+    --pill:       50px;
+    --card:       18px;
+    --serif:      'Cormorant Garamond', serif;
+    --sans:       'Raleway', sans-serif;
+    --ease:       0.25s ease;
+}
+
+html { font-size: 16px; }
+
+body {
+    font-family: var(--sans);
+    background: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ── Nav ── */
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 48px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--navy);
+}
+
+.logo {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: -0.02em;
+}
+
+.logo span { font-style: normal; font-weight: 600; }
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+}
+
+.nav-links a {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    transition: opacity var(--ease);
+}
+
+.nav-links a:hover { opacity: 0.65; }
+
+.nav-links a.active {
+    border: 1.5px solid var(--white);
+    padding: 6px 22px;
+    border-radius: var(--pill);
+}
+
+/* ── Page body ── */
+.page-body {
+    padding: 36px 48px 64px;
+}
+
+/* ── Drop zone ── */
+.drop-zone {
+    border: 2px dashed rgba(255,255,255,0.28);
+    border-radius: 24px;
+    padding: 44px 32px;
+    margin-bottom: 36px;
+    max-width: 520px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color var(--ease), background var(--ease);
+}
+
+.drop-zone:hover,
+.drop-zone.drag-over {
+    border-color: rgba(255,255,255,0.65);
+    background: rgba(255,255,255,0.05);
+}
+
+.drop-zone svg {
+    width: 48px; height: 48px;
+    stroke: rgba(255,255,255,0.45);
+    fill: none;
+}
+
+.drop-zone p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.drop-zone strong { color: var(--white); font-weight: 600; }
+
+.file-input { display: none; }
+
+/* ── Wardrobe section ── */
+.section-title {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 20px;
+}
+
+.wardrobe-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 200px);
+    gap: 12px;
+}
+
+.w-cell {
+    border-radius: var(--card);
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    background: rgba(255,255,255,0.08);
+    cursor: pointer;
+    position: relative;
+    transition: transform var(--ease);
+}
+
+.w-cell:hover { transform: scale(1.03); }
+
+.w-cell img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.w-cell .overlay {
+    position: absolute; inset: 0;
+    background: rgba(9,30,80,0.52);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--ease);
+}
+
+.w-cell:hover .overlay { opacity: 1; }
+
+.overlay span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.15);
+    padding: 6px 16px;
+    border-radius: 50px;
+}
+
+/* Empty placeholder cell */
+.w-cell-empty {
+    border-radius: var(--card);
+    aspect-ratio: 3 / 4;
+    background: rgba(255,255,255,0.06);
+    border: 2px dashed var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background var(--ease);
+}
+
+.w-cell-empty:hover { background: rgba(255,255,255,0.1); }
+
+.w-cell-empty svg {
+    width: 28px; height: 28px;
+    stroke: var(--text-muted);
+    fill: none;
+}
+
+.w-cell-empty span {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+    .nav { padding: 16px 20px; }
+    .page-body { padding: 24px 20px 48px; }
+    .wardrobe-grid { grid-template-columns: repeat(2, 1fr); }
+}
+/* ── Footer Styling for Wardrobe Page ── */
+.footer {
+    background: #091E50;
+    color: white;
+    padding: 40px 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+    z-index: 10;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 30px;
+}
+
+.footer-brand p { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-top: 10px; }
+.footer-links h4, .footer-social h4 { font-size: 0.75rem; letter-spacing: 1px; margin-bottom: 15px; color: #fff; text-transform: uppercase; }
+.footer-links ul { list-style: none; }
+.footer-links a { color: rgba(255,255,255,0.6); font-size: 0.85rem; transition: 0.3s; }
+.footer-links a:hover { color: #fff; }
+
+.social-icons { display: flex; gap: 10px; }
+.social-circle { width: 30px; height: 30px; border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; transition: 0.3s; }
+.social-circle:hover { background: #fff; color: #0D2B6E; }
+
+.footer-bottom { text-align: center; font-size: 0.7rem; color: rgba(255,255,255,0.3); margin-top: 30px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); }
+
+/* Ensure the main container doesn't overlap footer */
+body { overflow-y: auto; height: auto; }
+.main-container { height: 85vh; }
+
